@@ -1,0 +1,66 @@
+
+extends ../layout/main
+block variable
+  -
+    var title_page = 'Квартира 2А'
+    var id_page = 'flat-page'
+    var class_page = 'flat-page'
+    var breadcrumbsBtn = 'filter'
+    var breadcrumbsSubitem = [
+      {
+        label: 'About',
+        link: pagesLink[0].about
+      }
+    ]
+    var fit = [
+      'Маркетинг і продажі «під ключ»',
+      'Комплексний аудитвідділу продажу',
+      '“Свіжа кров” HR-послуга для забудовників',
+      'CRM: аудит та налаштування',
+      'Маркетинг на аутсорсі',
+      'Таємний покупець',
+      'SMM «під ключ»'
+    ]
+  
+block meta
+  title= title_page
+  meta(name='description', content='')
+block head
+    link(rel='stylesheet', href="./assets/styles/main.min.css")
+block scripts
+  script(defer src='./assets/scripts/vendors.bundle.js')
+  script(defer src='./assets/scripts/index.bundle.js')
+  script(defer src='./assets/scripts/index.js')
+  script(defer src='./assets/scripts/home.js')
+block content
+  .main-content
+    .main-content__l
+      .title-wrap
+        h1.title Маркетинг і організація продажів первинної нерухомості
+        h3.subtitle Працюємо із забудовниками України
+      ul.service-list
+        each v, i in fit
+          li.service-item
+            +svg('f'+i).service-item__ico
+            h4.service-item__text= v
+    .main-content__r
+      .form-block
+        .form-block__title Зворотній зв′язок
+        form.form
+          input(type="text" required name="name" placeholder="Ім’я")
+          input(type="text" required name="phone" placeholder="Телефон").js-inputtelmask
+          input(type="text" name="company" placeholder="Компанія")
+          select(name="service" required)
+            option(value="" selected="selected") Послуга
+            each v, i in fit
+              option(value= i)= v
+          button
+            <svg width="100%" height="100%" viewBox="0 0 192 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M189.413 46.3522L0.5 42.6226V0.5H191.477L189.413 46.3522Z" fill="#FF8013" stroke="#FF8013"/>
+            </svg>
+            span Надіслати
+block footer
+  include ../includes/footer.pug
+
+block header
+  include ../includes/header.pug
